@@ -84,7 +84,7 @@ function LinkedList () {
             return null;
         }
 
-        //2.获取对应 data 
+        //2.获取对应 Node
         let current = this.head;
         let index = 0;
         while (index < position) {
@@ -93,6 +93,93 @@ function LinkedList () {
         }
 
         return current.data;
+    }
+
+    //5.indexOf方法
+    LinkedList.prototype.indexOf = function (data) {
+        //1.定义变量
+        let current = this.head;
+        let index = 0;
+        
+        //2.查找
+        while (current) {
+            if (current.data == data){
+                return index;
+            } else {
+                current = current.next;
+                index += 1;
+            }
+        }
+
+        //3.没找到返回 -1
+        return -1;
+    }
+
+    //6.update 方法
+    LinkedList.prototype.updata = function (position, newData) {
+        //1.越界判断
+        if (position < 0 || position >= this.length) {
+            return false;
+        }
+
+        //2.查找正确节点,类似 get 方法
+        let current = this.head;
+        let index = 0;
+        while (index < position) {
+            current = current.next;
+            index++;
+        }
+
+        //3.修改 data
+        current.data = newData;
+        return true;
+    }
+
+    //7.removeAt 方法
+    LinkedList.prototype.removeAt = function (position) {
+        //1.越界判断
+        if (position < 0 || position >= this.length) {
+            return null;
+        }
+
+        //2.判断删除的是否是第一个节点
+        let current = this.head;    //定义在外部方便 return 
+        if (position == 0) {
+            this.head = this.head.next;
+        } else {
+            let previous = null;    //前一个节点默认为 null
+            let index = 0;
+            while (index++ < position) {
+                previous = current;
+                current = current.next;
+            }
+            //前一个节点的 next 指向后一个节点的 next
+            //不被任何节点指向的节点会被自动回收
+            previous.next = current.next;
+        }
+
+        this.length -= 1;
+
+        return current.data;
+    }
+
+    //8.remove 方法
+    LinkedList.prototype.remove = function (data) {
+        //1.获取 data 在链表中的位置
+        let position = this.indexOf(data);
+
+        //2.根据位置信息删除节点
+        return this.removeAt(position);
+    }
+
+    //9.isEmpty 方法
+    LinkedList.prototype.isEmpty = function () {
+        return this.length == 0;
+    }
+
+    //10.size 方法
+    LinkedList.prototype.size = function () {
+        return this.length;
     }
 }
 
