@@ -110,11 +110,131 @@ function DoubleLinkedList () {
 
          return true;
      }
+
+     //4.get 方法
+     DoubleLinkedList.prototype.get = function (position) {
+         //1.越界判断
+         if (position < 0 || position >= this.length) {
+             return null;
+         }
+
+         //2.获取元素
+         let current = this.head;
+         let index = 0;
+
+         while (index++ < position) {
+             current = current.next;
+         }
+
+         return current.data;
+     }
+
+     //5.indexOf 方法
+     DoubleLinkedList.prototype.indexOf = function (data) {
+         //1.定义变量
+         let current = this.head;
+         let index = 0;
+
+         //2.查找节点
+         while (current) {
+             if (current.data == data) {
+                 return index;
+             } else {
+                 current = current.next;
+                 index += 1;
+             }
+         }
+
+         return -1;
+     }
+
+     //6.update 方法
+     DoubleLinkedList.prototype.update = function (position, newData) {
+         //1.越界判断
+         if (position < 0 || position >= this.length) {
+             return false;
+         }
+
+         //2.寻找节点
+         let current = this.head;
+         let index = 0;
+         while (index++ < position) {
+             current = current.next;
+         }
+
+         //3.修改节点
+         current.data = newData;
+
+         return true;
+     }
+     
+     //7.removeAt 方法
+     DoubleLinkedList.prototype.removeAt = function (position) {
+         //1.越界判断
+         if (position < 0 || position >= this.length) {
+             return false;
+         }
+
+         //2.删除
+         let current = this.head;
+         if (this.length == 1) {    //判断链表中是否只有一个节点
+             this.head = null;
+             this.tail = null;
+         } else {
+            if (position == 0) {    //判断删除的是否是第一个节点
+                this.head.next.prev = null;
+                this.head = this.head.next;
+            } else if (position == this.length - 1) {    //判断删除是否是最后一个节点
+                current = this.tail;
+                this.tail.prev.next = null;
+                this.tail = this.tail.prev;
+            } else {    //其他情况
+                let index = 0;
+
+                while (index++ < position) {
+                    current = current.next;
+                }
+
+                current.prev.next = current.next;
+                current.next.prev = current.prev;
+            }
+         }
+
+         //3.length - 1
+         this.length - 1;
+
+         return current.data;
+     }
+
+     //8.remove 方法
+     DoubleLinkedList.prototype.remove = function (data) {
+         //1.根据 data 获取索引
+         let index = this.indexOf(data);
+
+         //2.根据 index 删除对应位置的节点
+        return this.removeAt(index);
+     }
+
+     //9.isEmpty 方法
+     DoubleLinkedList.prototype.isEmpty = function () {
+         return this.length == 0;
+     }
+
+     //10.size 方法
+     DoubleLinkedList.prototype.size = function () {
+         return this.length;
+     }
+
+     //11.获取链表的第一个元素
+     DoubleLinkedList.prototype.getHead = function () {
+         return this.head.data;
+     }
+
+     //12.获取链表的最后一个元素
+     DoubleLinkedList.prototype.getTail = function () {
+        return this.tail.data;
+     }
 }
 
 let dll = new DoubleLinkedList();
-dll.append(1);
-dll.append(2);
-dll.append(3);
-dll.append(4);
 
