@@ -76,4 +76,24 @@ function LinkedList () {
 
         return true;
     }
+
+    //4.get方法
+    LinkedList.prototype.get = function (position) {
+        //1.越界判断
+        if (position < 0 || position > this.length - 1) {
+            return null;
+        }
+
+        //2.获取对应 data 
+        let current = this.head;
+        let index = 0;
+        while (index < position) {
+            current = current.next;
+            index++;
+        }
+
+        return current.data;
+    }
 }
+
+const linkedlist = new LinkedList();
