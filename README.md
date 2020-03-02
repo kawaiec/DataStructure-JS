@@ -5,3 +5,4 @@ DataStructure based on JavaScript
 - queue
 - linkedlist
 - set
+- dictionary
