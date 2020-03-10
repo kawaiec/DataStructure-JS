@@ -1,4 +1,5 @@
 # DataStructure-JS
+
 DataStructure based on JavaScript
 
 - stack
@@ -6,3 +7,5 @@ DataStructure based on JavaScript
 - linkedlist
 - set
 - dictionary
+- hashtable
+- binarysearchtree
