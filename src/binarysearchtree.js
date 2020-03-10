@@ -86,14 +86,16 @@ function BinarySearchTree () {
     //后序遍历: 内部方法: 递归
     BinarySearchTree.prototype.postOrderTraversalNode = function (node, handler) {
         if (node != null) {
-            //1.处理右子树中的节点
+            //1.处理左子树中的节点
+            this.postOrderTraversalNode(node.left, handler);
+
+            //2.处理右子树中的节点
             this.postOrderTraversalNode(node.right, handler);
 
-            //2.处理经过的节点
+            //3.处理经过的节点
             handler(node.key);
 
-            //3.处理左子树中的节点
-            this.postOrderTraversalNode(node.left, handler);
+            
         }
     }
 }
