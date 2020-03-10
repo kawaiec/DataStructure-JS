@@ -94,8 +94,6 @@ function BinarySearchTree () {
 
             //3.处理经过的节点
             handler(node.key);
-
-            
         }
     }
 }
