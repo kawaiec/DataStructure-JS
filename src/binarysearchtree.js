@@ -96,6 +96,56 @@ function BinarySearchTree () {
             handler(node.key);
         }
     }
+
+    //寻找最值
+    //1.寻找最大值
+    BinarySearchTree.prototype.max = function () {
+        //获取根节点
+        var node = this.root;
+
+        //依次不断向右, 直到节点为 null
+        var key = null;
+        while (node != null) {
+            key = node.key;
+            node = node.right;
+        }
+
+        return key;
+    }
+
+    //2.寻找最小值
+    BinarySearchTree.prototype.min = function () {
+        //获取根节点
+        var node = this.root;
+
+        //依次不断向左, 直到节点为 null
+        var key = null;
+        while (node != null) {
+            key = node.key;
+            node = node.left;
+        }
+
+        return key;
+    }
+
+    //搜索 key 循环写法
+    BinarySearchTree.prototype.search = function (key) {
+        //获取根节点
+        var node = this.root;
+
+        //循环搜索 key
+        while (node != null) {
+            if (key < node.key) {
+                node = node.left;
+            } else if (key > node.key) {
+                node = node.right;
+            } else {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
 
 let bst = new BinarySearchTree();
@@ -114,3 +164,8 @@ bst.postOrderTraversal(function (key) {
     resultString += key + " ";
 });
 console.log(resultString);
+
+console.log(bst.max());
+console.log(bst.min());
+console.log(bst.search(22));
+console.log(bst.search(99));
