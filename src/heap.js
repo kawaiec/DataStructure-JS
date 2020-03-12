@@ -67,12 +67,11 @@ function Heap() {
 
         return max;
     }
-
     //堆排序
-    Heap.prototype.heapSort = function() {
+    Heap.prototype.heapSort = function () {
         //建堆
         var n = this.count;
-        for (var i = Math.floor(n/2); i > 0; i--) {
+        for (var i = Math.floor(n / 2); i > 0; i--) {
             this.heapToBottom(i, n);
         }
 
@@ -82,22 +81,13 @@ function Heap() {
             this.heapToBottom(1, --n);
         }
     }
-
 }
 
-var heap = new Heap();
-heap.insert(100);
-heap.insert(200);
-heap.insert(22);
-heap.insert(12);
-heap.insert(21);
-heap.insert(23);
-heap.insert(112);
-heap.insert(2);
-heap.insert(22);
 
-heap.insert(1);
+var heap = new Heap();
+
+var a = [5,4,3,2,1,0,2,88,99,12,45,21,34];
+a.forEach( v => heap.insert(v));
 console.log(heap);
-console.log(heap.toString());
 heap.heapSort();
 console.log(heap);
